@@ -24,8 +24,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mypress_db
-      MYSQL_USER: 123456
-      MYSQL_PASSWORD: badr
+      MYSQL_USER: badr
+      MYSQL_PASSWORD: 123456
     volumes:
       - "./db:/var/lib/mysql"
     networks:
