@@ -74,3 +74,8 @@ The easiest way is to install the apache Symfony pack by executing the following
 ## Main Tasks
 
 To do ...
+
+###[for-16] 8. Comprendre Doctrine interagir avec le cycle de vie des Entités
+
+dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/slugify
+ et en cree une fonction qui initialise le slug chaque fois quand a besoin

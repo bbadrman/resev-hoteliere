@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use App\Repository\AdRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AdRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Ad
 {
@@ -51,6 +53,21 @@ class Ad
      * @ORM\Column(type="integer")
      */
     private $rooms;
+/**
+ * Permet de initialiser le slug
+ * 
+ * @ORM\PrePersist
+ * @ORM\PreUpdate
+ * 
+ * @return void
+ */
+    public function initialSlug()
+    {
+        if (empty($this->slug)) {
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->title);
+        }
+    }
 
     public function getId(): ?int
     {
