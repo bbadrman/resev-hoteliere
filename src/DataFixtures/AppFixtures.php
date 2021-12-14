@@ -25,12 +25,12 @@ class AppFixtures extends Fixture
 
 
             $ad->setTitle($title)
-           ->setSlug("titre-de-l-annonce-n-$i")
-           ->setCoverImage($coverImage)
-           ->setIntroduction($introduction)
-           ->setContent($content)
-           ->setPrice(mt_rand(40, 200))
-           ->setRooms(mt_rand(1, 5));
+        //    ->setSlug("titre-de-l-annonce-n-$i")
+                ->setCoverImage($coverImage)
+                ->setIntroduction($introduction)
+                ->setContent($content)
+                ->setPrice(mt_rand(40, 200))
+                ->setRooms(mt_rand(1, 5));
             $manager->persist($ad);
         }
 
