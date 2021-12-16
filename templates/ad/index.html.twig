@@ -2,39 +2,52 @@
 
 {% block title %}
     Nos magnifiques annonces!
-
+    
+    
 {% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 class="my-3">Voici les annonces de nos hotes ! </h1>
+        <h1 class="my-3">
+            Voici les annonces de nos hotes ! 
+        </h1>
 
         <div class="row">
             {% for ad in ads %}
                 <div class="col-md-4">
                     <div class="card-header mb-3">
                         <div class="card-header text-center">
-                            {{ ad.rooms }} chambres, <strong>
-{{ ad.price }}
-&euro; / nuit </strong>
+                            {{ ad.rooms }}
+                            chambres, 
+                            <strong>
+                                {{ ad.price }}
+                                &euro; / nuit 
+                            </strong>
                             <br>
-                                <small> Pas encore noté </small>
-                        </div>
-                    <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
-    
+                                <small>
+                                    Pas encore noté 
+                                </small>
+                            </div>
+                            <a href="{{ path('ads_show', {'slug': ad.slug}) }}"></a>
+                            <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
+
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        {{ad.title}}                                                                               						                
-                                                                                                            
-                                                                        
+
+                                        <a href="{{ path('ads_show', {'slug': ad.slug}) }}">
+                                            {{ ad.title }}
+                                        </a>
+
                                     </h4>
                                     <p class="card-text">
-                                        {{ad.introduction}}                              
+                                        {{ ad.introduction }}
                                     </p>
-                                    <a href="#" class="btn btn-success float-right">
+<a href="{{ path('ads_show', {'slug': ad.slug}) }}" class="btn btn-success float-right">
+    
                                         En savoitr plus !                
-                                                                                                            
-                                                                        
+                                                                                                                                                    
+                                                                                                                
+                                                                            
                                     </a>
                                 </div>
                             </div>
