@@ -1,11 +1,72 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ad.title}} 
+    {{ ad.title }}
 {% endblock %}
 
 {% block body %}
-<div class="container">
-<h1> {{ad.title}} </h1>
-</div>
-{% endblock %}
+
+    <div class="ad-tit" style="background-image: url({{ ad.coverImage }})">
+
+        <div class="container">
+            <h1>
+                {{ ad.title }}
+            </h1>
+            <p>
+                {{ ad.introduction }}
+            </p>
+            <p class="h2">
+                <strong>
+                    {{ ad.rooms }}
+                    chambres 
+                                            
+                                    
+                </strong>
+                pour 
+                                
+                                
+                <strong>
+                    {{ ad.price }}
+                    &euro; / nuit 
+                                    
+                </strong>
+            </p>
+            <a href="#" class="btn btn-primary">
+                Réserver !
+                            
+            </a>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                {{ ad.content }}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="http//placehold.it/64x64" alt="Avatar de adil"></div>
+                        <div class="col">
+                            <h3>
+                                Adil Amrani
+                            </h3>
+                            <a href="#" class="btn btn-primary"> 3 annonces</a>
+
+                        </div>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae temporibus accusamus enim saepe dolores alias libero assumenda! Aliquam, voluptates reiciendis!
+                    </p>
+                    <p>
+                        Similique ducimus inventore animi repellat exercitationem sed fugiat nisi, voluptas, ex itaque unde! Nisi dolor nulla similique, veritatis quibusdam aliquam.
+                    </p>
+                    <p>
+                        Fugit voluptatibus ut deleniti laborum ratione quibusdam unde, tenetur quod culpa! Doloremque quae libero impedit, quis aspernatur magnam ad consequatur.
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    
