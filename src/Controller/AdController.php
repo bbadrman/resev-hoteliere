@@ -37,6 +37,6 @@ class AdController extends AbstractController
      $ad = $repo->findOneBySlug($slug);
      return $this->render('ad/show.html.twig',[
          'ad' => $ad
-     ]);
+     ]);        
     }
 }
