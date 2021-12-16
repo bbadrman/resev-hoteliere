@@ -12,7 +12,7 @@
         </title>
         {# Run `composer require symfony/webpack-encore-bundle`
                            and uncomment the following Encore helpers to start using Symfony UX #}
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
 
         {% block stylesheets %}{#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
@@ -53,13 +53,12 @@
 
             {% block body %}{% endblock %}
 
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery.slim.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/jquery.slim.min.js"></script>
 
-            <script src="js/popper.min.js"></script>
+            <script src="/js/popper.min.js"></script>
 
-            {% block javascripts %}{#{{ encore_entry_script_tags('app') }}#}
-            {% endblock %}
+            {% block javascripts %} {% endblock %}
         </body>
     </body>
 </html>
