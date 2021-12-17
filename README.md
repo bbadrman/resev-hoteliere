@@ -79,3 +79,7 @@ To do ...
 
 dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/slugify
  et en cree une fonction qui initialise le slug chaque fois quand a besoin
+
+  ###[for-24 ] 11. Comprendre le ParamConverter de Symfony 4
+
+     grace a injection independance en peut aussi filer les objets quand a besoin
