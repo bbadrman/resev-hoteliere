@@ -31,9 +31,22 @@ class AdController extends AbstractController
      */
     public function create()
     {
-        return $this->render("ad/new.html.twig");
+        $ad = new Ad();
+        
+        $form = $this->createFormBuilder($ad)
+                    ->add('title')
+                    ->add('introduction')
+                    ->add('content')
+                    ->add('rooms')
+                    ->add('price')
+                    ->add('coverImage')
+                    ->getForm();
+
+        return $this->render("ad/new.html.twig",[
+            'form' => $form->createView()
+        ]);
     }
-    
+
     /**
      * Permet d'afficher une seule annonce
      * 
