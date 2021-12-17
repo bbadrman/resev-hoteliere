@@ -4,8 +4,12 @@
 <div class="container">
 <h1>Créer une nouvelle annonce</h1>
 
-    {{ form(form)}}
+    {{ form_start(form)}}
+    {{ form_label(form) }}
 
+    <button type="submit" class="btn btn-primary">Créer une nouvelle annonce</button>
+
+    {{ form_end(form)}}
 
 </div>
 
