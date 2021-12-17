@@ -22,7 +22,18 @@ class AdController extends AbstractController
             'ads' => $ads,
         ]);
     }
-
+    /**
+     * Permet de cree une nouvell annonce
+     *
+     * @Route("ads/new", name="ads_create")
+     * 
+     * @return Response
+     */
+    public function create()
+    {
+        return $this->render("ad/new.html.twig");
+    }
+    
     /**
      * Permet d'afficher une seule annonce
      * 
@@ -31,12 +42,13 @@ class AdController extends AbstractController
      * @return Response  
      */
 
-    public function show(Ad $ad) 
+    public function show(Ad $ad)
     {
-     //je récuperer l'annonce qui correspond au slug
-    //  $ad = $repo->findOneBySlug($slug);
-     return $this->render('ad/show.html.twig',[
-         'ad' => $ad
-     ]);        
+        //je récuperer l'annonce qui correspond au slug
+        //  $ad = $repo->findOneBySlug($slug);
+        return $this->render('ad/show.html.twig', [
+            'ad' => $ad
+        ]);
     }
+    
 }
