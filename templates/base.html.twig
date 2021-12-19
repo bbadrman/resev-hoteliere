@@ -7,12 +7,13 @@
         <title>
             {% block title %}
                 Welcome!
+                                                            
                                             
                             
             {% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle`
-                                   and uncomment the following Encore helpers to start using Symfony UX #}
+                                           and uncomment the following Encore helpers to start using Symfony UX #}
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/app.css">
 
@@ -25,7 +26,8 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('homepage') }}">
                     MyPres !
-                                                                    
+                                                                                        
+                                                                            
                                                         
                                     
                 </a>
@@ -37,11 +39,13 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ path('homepage') }}">
-                                Accueil </a>
+                                Accueil 
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ path('ads_index') }}">
-                                Annonces </a>
+                                Annonces 
+                            </a>
                         </li>
 
                     </ul>
@@ -50,6 +54,7 @@
 
                             <a href="#" class="nav-link">
                                 Mon Compte !
+                                                                                                                            
                                                                                             
                                                             
                             </a>
@@ -57,6 +62,18 @@
                     </ul>
                 </div>
             </nav>
+
+            {% for label, messages in app.flashes %}
+                <div class="container">
+                    <div class="alert alert-{{ label }}">
+                        {% for message in messages %}
+                            <p>
+                                {{ message | raw }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
 
             {% block body %}{% endblock %}
 
