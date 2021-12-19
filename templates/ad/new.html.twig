@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}
     Création d'une annonce 
+    
 {% endblock %}
-
+{% form_theme form _self %}
 {% block body %}
     <div class="container">
         <h1>
             Créer une nouvelle annonce
+                    
         </h1>
 
         {{ form_start(form) }}
@@ -14,6 +16,7 @@
 
         <button type="submit" class="btn btn-primary">
             Créer la nouvelle annonce
+                    
         </button>
 
         {{ form_end(form) }}
@@ -22,3 +25,36 @@
 
 {% endblock %}
 
+{% block _ad_images_widget %}
+    <p>
+        Ici, vous pouvez ajouter vos propres images !
+    </p>
+
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <button type="button" id="add-image" class="btn btn-primary">
+            Ajouter une image
+        </button>
+    </div>
+{% endblock %}
+
+{% block _ad_images_entry_row %}
+      {{ form_widget(form) }}
+{% endblock %}
+
+
+{% block _ad_images_entry_widget %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                {{ form_widget(form.url) }}
+
+            </div>
+            <div class="col">
+                {{ form_widget(form.caption) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
