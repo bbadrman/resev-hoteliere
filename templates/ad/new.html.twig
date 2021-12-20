@@ -58,3 +58,20 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+
+<script>
+ $('#add-image').click(function () {
+ // Je réxupére le numéro des futurs champs que je vais crées
+const index = $('#ad_images div.form-group').length;
+
+// Je récupére le prototype des entrées
+const tmpl = $('#ad_images').data('prototype').replace(/__name__/g, index);
+
+// J'injecte ce code au sein de la div
+   $('#ad_images').append(tmpl);
+    });
+</script>
+
+{% endblock %}
