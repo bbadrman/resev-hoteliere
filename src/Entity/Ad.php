@@ -7,6 +7,7 @@ use App\Repository\AdRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdRepository::class)
@@ -23,6 +24,12 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min=10,
+     *      max=255,
+     *      minMessage="Le titre doit faire plus que 10 caractaires ",
+     *      maxMessage="Le titre ne peut pas faire plus que 255 caractaires ")
+     *
      */
     private $title;
 
@@ -33,11 +40,19 @@ class Ad
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Length(
+     *      min=20,
+     *      minMessage="L'introduction  doit  faire plus de 20 caractaires ")
+     *
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min=100,
+     *      minMessage="Votre description doit  faire plus de 100 caractaires ")
+     *
      */
     private $introduction;
 
@@ -48,6 +63,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url()
      */
     private $coverImage;
 

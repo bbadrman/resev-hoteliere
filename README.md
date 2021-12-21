@@ -83,3 +83,6 @@ dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/s
   ###[for-24 ] 11. Comprendre le ParamConverter de Symfony 4
 
      grace a injection independance en peut aussi filer les objets quand a besoin
+
+     ##use Symfony\Component\Validator\Constraints as Assert;
+     pour la validation du champ 
