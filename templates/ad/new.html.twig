@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
     Création d'une annonce 
-        
-    
 {% endblock %}
 {% form_theme form _self %}
 {% block body %}
@@ -35,6 +33,8 @@
     </p>
 
     {{ form_widget(form) }}
+    
+    <input type="hidden" id="widgets-counter" value="0 ">
 
     <div class="form-group">
         <button type="button" id="add-image" class="btn btn-primary">
@@ -78,13 +78,15 @@
 
 $('#add-image').click(function () {
  // Je réxupére le numéro des futurs champs que je vais crées
-const index = $('#ad_images div.form-group').length;
-
+const index = +$('#widgets-counter').val();
+console.log(index);
 // Je récupére le prototype des entrées
 const tmpl = $('#ad_images').data('prototype').replace(/__name__/g, index);
 // J'injecte ce code au sein de la div
    
    $('#ad_images').append(tmpl);
+
+   $('#widgets-counter').val(index + 1);
 
 //Je gére le button supprimer
      handleDeleteButtons();
