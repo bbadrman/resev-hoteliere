@@ -86,3 +86,5 @@ dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/s
 
      ##use Symfony\Component\Validator\Constraints as Assert;
      pour la validation du champ 
+
+## @UniqueEntity(   pour eviter les doubleaux 

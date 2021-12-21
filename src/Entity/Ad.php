@@ -4,15 +4,20 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use App\Repository\AdRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=AdRepository::class)
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ * fields={"title"},
+ * message="Une autre annonce posséde déja ce titre, merci de modifie ")
  */
+ 
 class Ad
 {
     /**
@@ -40,12 +45,17 @@ class Ad
 
     /**
      * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="text")
      * @Assert\Length(
      *      min=20,
      *      minMessage="L'introduction  doit  faire plus de 20 caractaires ")
      *
      */
-    private $price;
+    private $introduction;
 
     /**
      * @ORM\Column(type="text")
@@ -53,11 +63,6 @@ class Ad
      *      min=100,
      *      minMessage="Votre description doit  faire plus de 100 caractaires ")
      *
-     */
-    private $introduction;
-
-    /**
-     * @ORM\Column(type="text")
      */
     private $content;
 
