@@ -57,9 +57,12 @@
                 <div class="row">
                     <div class="col">
                         {{ form_widget(form.url) }}
+                        {{ form_errors(form.url) }}
                     </div>
                     <div class="col">
                         {{ form_widget(form.caption) }}
+                        {{ form_errors(form.caption) }}
+
                     </div>
                 </div>
             </div>
