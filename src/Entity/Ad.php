@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=AdRepository::class)
- * @ORM\HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(
  * fields={"title"},
  * message="Une autre annonce posséde déja ce titre, merci de modifie ")
