@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class User 
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -68,13 +68,13 @@ class User
     private $ads;
 
     /**
- * Permet de initialiser le slug
- * 
- * @ORM\PrePersist
- * @ORM\PreUpdate
- * 
- * @return void
- */
+     * Permet de initialiser le slug
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     * 
+     * @return void
+     */
     public function initialSlug()
     {
         if (empty($this->slug)) {
@@ -217,5 +217,27 @@ class User
         }
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getPassword()
+    {
+        return $this->hash;
+    }
+
+    public function getSalt()
+    { 
+    }
+    public function getUsername()
+    {
+        return $this->email;
+    }
+    
+    public function eraseCredentials()
+    {
     }
 }
