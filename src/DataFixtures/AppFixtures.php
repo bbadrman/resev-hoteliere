@@ -9,9 +9,16 @@ use App\Entity\Image;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\Console\CommandLoader\FactoryCommandLoader;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('FR-fr');
@@ -21,6 +28,7 @@ class AppFixtures extends Fixture
         $genres = ['male', 'female'];
 
         for($i = 1; $i <= 10; $i++){
+
             $user = new User();
 
             $genre = $faker->randomElement($genres);
@@ -30,14 +38,15 @@ class AppFixtures extends Fixture
 
             $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId;
 
-
+            $hash = $this->encoder->encodePassword($user, 'password');
+ 
             $user->setFirstName($faker->firstname($genre))
-                ->setLastName($faker->lastname)
-                ->setEmail($faker->email)
-                ->setIntroduction($faker->sentence())
-                ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
-                ->setHash('password')
-                ->setPicture($picture);
+                 ->setLastName($faker->lastname)
+                 ->setEmail($faker->email)
+                 ->setIntroduction($faker->sentence())
+                 ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
+                 ->setHash($hash)
+                 ->setPicture($picture);
                 
             $manager->persist($user);
             $users[] = $user;
