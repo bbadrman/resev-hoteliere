@@ -1,4 +1,8 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -6,6 +10,10 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        in_database:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
