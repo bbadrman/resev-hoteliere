@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AccountType;
 use App\Form\RegistrationType;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +28,7 @@ class AccountController extends AbstractController
         $error = $utils->getLastAuthenticationError();
         $username = $utils->getLastUsername();
 
-        return $this->render('account/login.html.twig',[
+        return $this->render('account/login.html.twig', [
             'hasError' => $error !== null,
             'username' => $username
         ]);
@@ -41,8 +42,9 @@ class AccountController extends AbstractController
      * @return void
      */
 
-    public function logout(){
-          //..rien !
+    public function logout()
+    {
+        //..rien !
     }
 
     /**
@@ -53,14 +55,15 @@ class AccountController extends AbstractController
      * @return Response 
      */
 
-    public function register(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder){
+    public function register(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder)
+    {
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->hashPassword($user, $user->getHash());
             $user->setHash($hash);
 
@@ -74,9 +77,38 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('account_login');
         }
 
-        return $this->render('account/registration.html.twig',[
+        return $this->render('account/registration.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+    /**
+     * Permet d'afficher et de traiter le formulaire de modification de profil
+     * 
+     * @Route("/account/profile", name="account_profile")
+     *
+     * @return Response
+     */
 
+    public function profile(Request $request, EntityManagerInterface $manager)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(AccountType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Les données du profil ont été enregistrée avec succés !"
+            );
+        }
+
+        return $this->render('account/profile.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
