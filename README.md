@@ -88,3 +88,14 @@ dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/s
      pour la validation du champ 
 
 ## @UniqueEntity(   pour eviter les doubleaux 
+
+## login et logout
+  pour assurer la connexion du login il faut oblicatoir de modifie dans security.yaml les parametre suivant: provider: in_database
+
+            form_login: 
+                login_path: account_login
+                check_path: account_login
+
+            logout:
+                path: account_logout
+                target: account_login
