@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AccountController extends AbstractController
 {
@@ -120,11 +121,34 @@ class AccountController extends AbstractController
      *
      * @return Response
      */
-    public function updatePassword(Request $request, EntityManagerInterface  $manager)
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface  $manager)
     {
         $passwordUpdate = new PasswordUpdate();
+        $user = $this->getUser();
         $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 1.Vérifier que le oldPassword du formulaire soit le méme que le password de l'user
+            if (!password_verify($passwordUpdate->getOldPassword(), $user->getHash())) {
+                // Gérer l'erreur
+                  } 
+                  else {
+                $newPassword = $passwordUpdate->getNewPassword();
+                $hash = $encoder->encodePassword($user, $newPassword);
+
+                $user->setHash($hash);
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->addFlash(
+                    'succes',
+                    "Votre mot de passe a bien été modifie !"
+                );
+
+                return $this->redirectToRoute('homepage');
+            }
+        } 
         return $this->render('account/password.html.twig', [
             'form' => $form->createView()
         ]);
