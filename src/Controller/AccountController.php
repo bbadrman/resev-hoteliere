@@ -48,7 +48,7 @@ class AccountController extends AbstractController
     /**
      * Permet d'afficher la formulaire d'inscription
      * 
-     * @Route("/register", name="accont_register")
+     * @Route("/register", name="account_register")
      * 
      * @return Response 
      */
