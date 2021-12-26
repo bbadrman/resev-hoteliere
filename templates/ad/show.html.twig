@@ -17,20 +17,10 @@
             <p class="h2">
                 <strong>
                     {{ ad.rooms }}
-                    chambres  
-                                                                                                                    
-                                                                                                
-                                                                            
-                                                        
+                    chambres                                         
                                     
                 </strong>
-                pour     
-                                                                                                                
-                                                                                                
-                                                                                
-                                                                
-                                                
-                                
+                pour                     
                 <strong>
                     {{ ad.price | number_format(2, ',', '') }}
                     &euro; / nuit   
@@ -84,74 +74,31 @@
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">
                                     Previous  
-                                                                                                                                                                                                                    
-                                                                                                                                                                                
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </span>
+                           </span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">
                                     Next      
-                                                                                                                                                                                                                    
-                                                                                                                                                                                
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </span>
+                                  </span>
                             </a>
                         </div>
 
                         <div class="col">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="http//placehold.it/64x64" alt="Avatar de adil"></div>
+                        {% set a = ad.author %}
+                            <div class="row mb-3 align-items-center">
+                                <div class="col-3">
+                               <img src="{{ a.picture }}" class="avatar avatar-medium" alt="Avatar de {{ a.fullName }}"></div>
+
                                     <div class="col">
-                                        <h3>
-                                            Adil Amrani
-                                                                                                                                                                                                                       
-                                                                                                                                                                                                                    
-                                                                                                                                                                            
-                                                                                                                                
-                                                                                    
-                                        </h3>
-                                        <a href="#" class="btn btn-primary">
-                                            3 annonces
-                                                                                                                                                                                                                         
-                                                                                                                                                                                                                    
-                                                                                                                                                                            
-                                                                                                                                
-                                                                                    
-                                        </a>
+                                        <h3>{{ a.fullName }}</h3>
+                                        <span class="btn btn-primary">
+                                            {{a.ads | length }} annonces                                           
+                                        </span>
 
                                     </div>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae temporibus accusamus enim saepe dolores alias libero assumenda! Aliquam, voluptates reiciendis!
-                                                                                                                                                                               
-                                                                                                                                                                            
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </p>
-                                <p>
-                                    Similique ducimus inventore animi repellat exercitationem sed fugiat nisi, voluptas, ex itaque unde! Nisi dolor nulla similique, veritatis quibusdam aliquam.
-                                                                                                                                                                                   
-                                                                                                                                                                            
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </p>
-                                <p>
-
-                                    Fugit voluptatibus ut deleniti laborum ratione quibusdam unde, tenetur quod culpa! Doloremque quae libero impedit, quis aspernatur magnam ad consequatur.                        
-                                                                                                                                                                            
-                                                                                                                                            
-                                                                                                        
-                                                                    
-                                </p>
+                                {{ a.description | raw }}
                             </div>
                         </div>
                     </div>
