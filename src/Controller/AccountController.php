@@ -160,7 +160,7 @@ class AccountController extends AbstractController
     /**
      * Permet d'afficher le profil de l'utilisateur connecté
      * 
-     * @Route("/account ")
+     * @Route("/account", name="account_index")
      */
 
     public function myAccount(){
