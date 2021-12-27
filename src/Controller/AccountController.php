@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -89,6 +90,7 @@ class AccountController extends AbstractController
      * Permet d'afficher et de traiter le formulaire de modification de profil
      * 
      * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -101,7 +103,7 @@ class AccountController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user);
             $manager->flush();
 
@@ -119,6 +121,7 @@ class AccountController extends AbstractController
      * Permet de modfier le mot de passe
      *
      * @Route("/account/password-update", name="account_password")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -134,9 +137,7 @@ class AccountController extends AbstractController
             if (!password_verify($passwordUpdate->getOldPassword(), $user->getHash())) {
                 // Gérer l'erreur
                 $form->get('oldPassword')->addError(new FormError("Le mot de passe que vous avez tapé n'est pas votre mot de passe actuel !"));
-        
-                  } 
-                  else {
+            } else {
                 $newPassword = $passwordUpdate->getNewPassword();
                 $hash = $encoder->encodePassword($user, $newPassword);
 
@@ -151,7 +152,7 @@ class AccountController extends AbstractController
 
                 return $this->redirectToRoute('homepage');
             }
-        } 
+        }
         return $this->render('account/password.html.twig', [
             'form' => $form->createView()
         ]);
@@ -161,12 +162,13 @@ class AccountController extends AbstractController
      * Permet d'afficher le profil de l'utilisateur connecté
      * 
      * @Route("/account", name="account_index")
+     * @IsGranted("ROLE_USER")
      */
 
-    public function myAccount(){
-        return $this->render('user/index.html.twig',[
+    public function myAccount()
+    {
+        return $this->render('user/index.html.twig', [
             'user' => $this->getUser()
         ]);
-
     }
 }
