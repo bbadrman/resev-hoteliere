@@ -38,11 +38,9 @@ class AdController extends AbstractController
     {
         $ad = new Ad(); 
         
-
         $form = $this->createForm(AdType::class, $ad);
 
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($ad->getImages() as $image) {
@@ -51,6 +49,7 @@ class AdController extends AbstractController
             }
 
             // $manager = $this->getDoctrine()->getManager();
+            $ad->setAuthor($this->getUser());
 
             $manager->persist($ad);
             $manager->flush();
@@ -91,6 +90,7 @@ class AdController extends AbstractController
                 $manager->persist($image);
             }
 
+            $ad->setAuthor($this->getUser());
            
             $manager->persist($ad);
             $manager->flush();
