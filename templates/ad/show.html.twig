@@ -27,10 +27,11 @@
                         
                 </strong>
             </p>
-            <a href="#" class="btn btn-primary">
-                Réserver !            
-                                                                                                                         
-            </a>
+            <a href="#" class="btn btn-primary">Réserver ! </a>
+            {% if app.user and app.user == ad.author %}
+            <a href="{{ path('ads_edit', {'slug': ad.slug})}}" class="btn btn-secondary">Modifier l'annonce</a>
+            {% endif %}
+
         </div>
 
         <div class="container">
