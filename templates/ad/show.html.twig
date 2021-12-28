@@ -20,7 +20,8 @@
                     {{ ad.price | number_format(2, ',', '') }}
                     &euro; / nuit   </strong>
             </p>
-                <a href="#" class="btn btn-primary">
+                  <a href="{{ path('booking_create', {'slug': ad.slug }) }}" class="btn btn-primary">
+    
                     Réserver ! 
                 </a>
             {% if app.user and app.user == ad.author %}
