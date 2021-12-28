@@ -7,6 +7,7 @@ use Faker\Factory;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
+use App\Entity\Booking;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\Console\CommandLoader\FactoryCommandLoader;
@@ -99,6 +100,32 @@ class AppFixtures extends Fixture
                   ->setAd($ad);
                 $manager->persist($image);
             }
+            //Gestion des réservations
+            for ($j = 1; $j <= mt_rand(2, 10); $j++) {
+                $booking = new Booking();
+                $createdAt = $faker->dateTimeBetween('-6 months');
+                $startDate = $faker->dateTimeBetween('-3 months');
+                //Gestion de la date de fin
+                $duration = mt_rand(3, 10);
+                //en veux cree une date de fin  aprtir du stardate
+                $endDate = (clone $startDate)->modify("+$duration days");
+                $amount = $ad->getPrice() * $duration;
+
+                $booker = $users[mt_rand(0, count($users) - 1)];
+
+                // $comment = $faker->paragraph();
+
+                $booking->setBooker($booker)
+                    ->setAd($ad)
+                    ->setStartDate($startDate)
+                    ->setEndDate($endDate)
+                    ->setCreatedAt($createdAt)
+                    ->setAmount($amount);
+                    
+
+                $manager->persist($booking);
+            }
+
                 $manager->persist($ad);
         }
 
