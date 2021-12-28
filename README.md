@@ -99,3 +99,11 @@ dans cette tach en install le slugify  a l'aide du cmd :composer require cocur/s
             logout:
                 path: account_logout
                 target: account_login
+
+Error An error has occurred resolving the options of the form "Symfony\Component\Form\Extension\Core\Type\TextType": The option "widget" does not exist. Defined options are: "action", "allow_extra_fields", "allow_file_upload", "attr", "attr_translation_parameters", "auto_initialize", "block_name", "block_prefix", "by_reference", 
+
+solution: ajouter DateType in form type
+
+An error has occurred resolving the options of the form "Symfony\Component\Form\Extension\Core\Type\DateType": The option "widget" with value "signle_text" is invalid. Accepted values are: "single_text", "text", "choice".
+
+solution: il éte une error ortographe au signle 
