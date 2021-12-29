@@ -49,7 +49,7 @@ class BookingController extends AbstractController
     /**
      * Permet d'afficher la page d'une réservation
      *
-     * @Route("/booking/{id}", name="booking_show")
+     * @Route("/booking/{id} ", name="booking_show")
      * @param  Booking $booking
      * @param  Request $request
      * @param  EntityManagerInterface $manager

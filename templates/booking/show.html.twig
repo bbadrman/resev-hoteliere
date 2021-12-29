@@ -19,6 +19,36 @@
             )
         </h1>
 
+{% if app.request.query.get('withAlert') %}
+    <div class="alert alert-success">
+        <h4 class="alert-heading">
+            Bravo !
+        </h4>
+        <p>
+            Votre réservation auprés de
+            					
+            <strong>
+                  <a href="{{ path("user_show", {'slug': author.slug}) }}">
+    
+                    {{ author.fullName }}
+                </a>
+            </strong>
+            pour l'annonce
+            					
+            <strong>
+<a href="{{ path("ads_show", {'slug': ad.slug}) }}">
+    
+                    {{ ad.title }}
+                </a>
+            </strong>
+            a bien été prise en compte
+            				
+        </p>
+    </div>
+
+{% endif %}
+
+
         <div class="row">
             <div class="col">
                 <div class="alert alert-light">
