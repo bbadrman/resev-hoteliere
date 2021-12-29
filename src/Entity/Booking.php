@@ -33,11 +33,13 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
-     */
+     * @Assert\Date(message="La date d'arrivée doit étre ultérieure à la date d'aujourd'huit !", groups={"front"})
+     */ 
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date(message="La date de départ doit étre plus éloignée que la date d'arrivée !")
      */
     private $endDate;
 
