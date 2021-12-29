@@ -44,4 +44,23 @@ class BookingController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
+    /**
+     * Permet d'afficher la page d'une réservation
+     *
+     * @Route("/booking/{id}", name="booking_show")
+     * @param  Booking $booking
+     * @param  Request $request
+     * @param  EntityManagerInterface $manager
+     * @return Response
+     */
+    public function show(Booking $booking)
+    {
+
+        return $this->render('booking/show.html.twig', [
+            'booking' => $booking
+
+        ]);
+    }
 }
