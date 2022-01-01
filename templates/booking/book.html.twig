@@ -6,7 +6,7 @@
     {{ ad.title }}!{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" integrity="sha512-x2MVs84VwuTYP0I99+3A4LWPZ9g+zT4got7diQzWB4bijVsfwhNZU2ithpKaq6wTuHeLhqJICjqE6HffNlYO7w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
@@ -79,4 +79,25 @@
                 </div>
             {% endblock %}
 
-           
+{% block javascripts %}
+
+       
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" integrity="sha512-cOGL6gI01KK2Bws211W8S3COhzrorBbzKvLPWYOVtSEYet3yG1fzJrimtwh8rUyvMy9qjgY2e7Rt6IwyaiX1Mg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+      <script>
+      $(document).ready(function () {
+			$('#booking_startDate, #booking_endDate').datepicker({
+                format: 'dd/mm/yyyy',
+			datesDisabled: [
+                {% for day in ad.notAvailableDays %}
+                "{{ day.format('d/m/Y') }}",
+                {% endfor %}
+            ], 
+          	startDate: new Date()
+         });
+        })
+        
+        </script>
+        
+        {% endblock %}
