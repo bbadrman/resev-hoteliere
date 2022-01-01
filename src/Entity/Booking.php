@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use App\Repository\BookingRepository;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -33,14 +35,13 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date(message="Attention, La date d'arrivée doit étre ultérieure à la date d'aujourd'huit !", groups={"front"})
-     */ 
+      */ 
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Date(message="La date de départ doit étre plus éloignée que la date d'arrivée !")
      */
+    
     private $endDate;
 
     /**
@@ -74,6 +75,50 @@ class Booking
             //prix de l'annonce * nombre de jour
             $this->amount = $this->ad->getPrice() * $this->getDuration();
         }
+    }
+
+    public function isBookableDates()
+    {
+        // 1) il faut connaitre les dates qui sont impossibles pour l'annonce 
+        $notAvailableDays = $this->ad->getNotAvailableDays();
+        // 2) il faut comparer les dates choisies avec les dates impossibles
+        $bookingDays = $this->getDays();
+
+        $formatDay   = function ($day) {
+
+            return $day->format('Y-m-d');
+        };
+
+        //Tableau des chaines de caractéres de mes journées
+        $days          = array_map($formatDay, $bookingDays);
+
+        $notAvailable  = array_map($formatDay, $notAvailableDays);
+
+        foreach ($days as $day) {
+            if (array_search($day, $notAvailable) !== false) return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Permet de récupérer un tableau des journées qui correspondent à ma réservation
+     * 
+     * @return array Un tableau d'objets DateTime représentant les jours de la réservation
+     */
+
+    public function getDays()
+    {
+        $resultat = range(
+            $this->startDate->getTimestamp(),
+            $this->endDate->getTimestamp(),
+            24 * 60 * 60
+        );
+
+        $days = array_map(function ($dayTimestamp) {
+            return new \DateTime(date('Y-m-d', $dayTimestamp));
+        }, $resultat);
+        return $days;
     }
 
     public function getDuration()
