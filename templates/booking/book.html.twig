@@ -16,9 +16,7 @@
                     <h1>
                         Réservez pour l'annonce :
                         		
-                        <em>
-                            {{ ad.title }}
-                        </em>
+                        <em> {{ ad.title }}  </em>
                     </h1>
                     <p>
                         Vous étes sur le point de réserver le bien de
@@ -50,20 +48,15 @@
                             </span>
                             &euro;
                         </h4>
-                        <span id="days">
-                            0
-                        </span>
-                        nuit(s) à
+                        <span id="days">0</span> nuit(s) à
                         		
                         {{ ad.price | number_format(2, ',', '') }}
-                        &euro;
-                        		par nuit
+                        &euro; / nuit
                         		
                             <h4 class="mt-3">
                                 Vous avez un commentaire
                             </h4>
                             {{ form_row(form.comment) }}
-
                     </div>
 
                     <h2>
@@ -81,23 +74,44 @@
 
 {% block javascripts %}
 
-       
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" integrity="sha512-cOGL6gI01KK2Bws211W8S3COhzrorBbzKvLPWYOVtSEYet3yG1fzJrimtwh8rUyvMy9qjgY2e7Rt6IwyaiX1Mg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-      <script>
-      $(document).ready(function () {
+     <script>
+
+		$(document).ready(function () {
 			$('#booking_startDate, #booking_endDate').datepicker({
-                format: 'dd/mm/yyyy',
+			format: 'dd/mm/yyyy',
 			datesDisabled: [
                 {% for day in ad.notAvailableDays %}
                 "{{ day.format('d/m/Y') }}",
                 {% endfor %}
-            ], 
-          	startDate: new Date()
-         });
-        })
-        
-        </script>
-        
-        {% endblock %}
+               ],
+			 startDate: new Date()
+			});
+
+			$('#booking_startDate, #booking_endDate').on('change', calculateAmount);
+			});
+
+			function calculateAmount(){
+				// On choppe les dates
+				const endDate = new Date($('#booking_endDate').val().replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
+				//18/09/2018
+				// (\d+)\/(\d+)\/(\d{4})
+				//2018-09-18
+				const startDate = new Date($('#booking_startDate').val().replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
+              // s il ya startDate et s ila ya endDate et si ila ya ;;;
+				if(startDate && endDate && startDate < endDate){
+				const DAY_TIME = 24 * 60 * 60 * 1000
+
+				const interval = endDate.getTime() - startDate.getTime();
+				const days = interval / DAY_TIME;
+				const amount = days * {{ad.price}};
+				$('#days').text(days);
+				$('#amount').text(amount.toLocaleString('fr-FR'));
+				}
+				}
+		 })
+	</script>
+{% endblock %}
