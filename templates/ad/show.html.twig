@@ -68,6 +68,40 @@
 				</a>
 			</div>  	
 			<hr>
+{% if ad.comments|length > 0 %}
+    <h2 class="mb-3">
+        Commentaires de nos voyageurs :
+    </h2>
+
+
+        {% for comment in ad.comments %}
+            <div class="bd-light rounded mb-3 py-3 px-3 ">
+                <strong>
+                    {{ comment.author.firstName }}
+                </strong>
+                a dit:
+                						
+                <blockquote>
+                    {{ comment.content }}
+                </blockquote>
+                <strong>
+                    Note donnée :
+                    							
+                    							:
+                </strong>
+                {{ comment.rating }}
+
+               
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>
+            Cette annonce n'a pas encore recu de commentaires....
+        </h2>
+    {% endif %}
+    
+
 		</div>
 		<div class="col">*
 			{# en remplace ad.author pas a dans les variables#}
