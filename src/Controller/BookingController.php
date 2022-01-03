@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Ad;
 use App\Entity\Booking;
+use App\Entity\Comment;
 use App\Form\BookingType;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,9 +67,13 @@ class BookingController extends AbstractController
      */
     public function show(Booking $booking)
     {
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
 
         return $this->render('booking/show.html.twig', [
-            'booking' => $booking
+            'booking' => $booking,
+              'form'  =>$form->createView()
 
         ]);
     }
