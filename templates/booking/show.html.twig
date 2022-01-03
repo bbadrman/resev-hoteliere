@@ -127,7 +127,19 @@
                                             Votre avis compte !
                                         </h2>
                                         {% if date() > date(booking.endDate) %}
-                                           
+                                            {% set comment = booking.ad.commentFromAuthor(app.user) %}
+                                            {% if comment is not null %}
+                                                <blockquote>
+                                                    {{ comment.content }}
+                                                </blockquote>
+                                                <strong>
+                                                    Note :
+                                                </strong>
+                                        {% include "partiels/rating.html.twig" with {"rating": comment.rating} %}
+
+                                        {% else %}
+
+
                                                 {{ form_start(form) }}
                                                 {{ form_widget(form) }}
 
@@ -136,7 +148,7 @@
                                                 </button>
 
                                                 {{ form_end(form) }}
-                                            
+                                        {% endif %}
 
                                         {% else %}
                                             <p>
