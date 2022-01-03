@@ -11,9 +11,16 @@
                 &euro; / nuit  
             </strong>
             <br>
-                <small>
-                    Pas encore noté  
-                </small>
+                {% if ad.comments|length > 0 %}
+
+                    {% include "partiels/rating.html.twig" with {'rating': ad.avgRatings} %}
+
+                {% else %}
+                    <small>
+                        Pas encore noté
+                    </small>
+                {% endif %}
+
         </div>
             <a href="{{ url }}">
                 <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
