@@ -71,9 +71,27 @@
 {% if ad.comments|length > 0 %}
     <h2 class="mb-3">
         Commentaires de nos voyageurs :
-    </h2>
+                </h2>
+            <div class="alert alert-info">
+                <h4 class="alert-heading text-center">
+                    <div class="row align-items-center">
 
-
+                        <div class="col">
+                            Notre globale donnée par nos voyageurs
+                                                        
+                        </div>
+                        <div class="col">
+                            {% include "partiels/rating.html.twig" with {'rating': ad.avgRatings} %}
+                            <br>
+                                <small>
+                                    (Calculée sur                                       
+                                    {{ ad.comments|length }}
+                                    avis)
+                                </small>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
         {% for comment in ad.comments %}
             <div class="bd-light rounded mb-3 py-3 px-3 ">
                 <strong>

@@ -123,6 +123,23 @@ class Ad
     }
 
     /**
+     * Permet d'obtenir la moyenne globale des notes pour cette annonce
+     *
+     * @return float
+     */
+    public function getAvgRatings()
+    {
+        //Calculer la somme des notations 
+        $sum = array_reduce($this->comments->toArray(), function ($total, $comment) {
+            return $total + $comment->getRating();
+        }, 0);
+        //Faire la division pour avoir la moyenne
+        if (count($this->comments) > 0) return $sum / count($this->comments);
+        return 0;
+    }
+    
+
+    /**
      * Permet d'obtenir un tableau des jours qui ne sont pas disponibles pour cette annonce
      * 
      * @return array Un tableau d'objets DateTime représentant des jours d'occupation
