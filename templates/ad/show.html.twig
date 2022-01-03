@@ -87,16 +87,11 @@
                 <strong>
                     Note donnée par {{comment.author.FullName}}:
                 </strong>
-                    <span class="rating">
-                        {% for i in 1..5 %}
-                            {% if i <= comment.rating %}
-                           
-                                <i class="fas fa-star"></i>
-                            {% else %}
-                                <i class="far fa-star"></i>
-                            {% endif %}
-                        {% endfor %}
-                    </span>
+                {{ comment.rating }}
+
+                {% include "partiels/rating.html.twig" with {'rating': comment.rating} %}
+
+
             </div>
         {% endfor %}
     {% else %}
