@@ -122,6 +122,22 @@ class Ad
         }
     }
 
+
+    /**
+     * Permet de récupérer le commentaire d'un auteur par rapport à une annonce
+     * 
+     * @param User $author
+     * @param Comment|null
+     */
+
+    public function getCommentFromAuthor(User $author)
+    {
+        foreach ($this->comments as $comment) {
+            if ($comment->getAuthor() === $author) return $comment;
+        }
+        return null;
+    }
+
     /**
      * Permet d'obtenir la moyenne globale des notes pour cette annonce
      *
@@ -137,7 +153,7 @@ class Ad
         if (count($this->comments) > 0) return $sum / count($this->comments);
         return 0;
     }
-    
+
 
     /**
      * Permet d'obtenir un tableau des jours qui ne sont pas disponibles pour cette annonce
@@ -167,7 +183,6 @@ class Ad
 
         return $notAvailableDays;
     }
-
 
     public function getId(): ?int
     {

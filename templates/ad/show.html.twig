@@ -107,9 +107,7 @@
                 </strong>
                 {{ comment.rating }}
 
-                {% include "partiels/rating.html.twig" with {'rating': comment.rating} %}
-
-
+                {% include "partiels/rating.html.twig" with {'rating': comment.rating} %}   
             </div>
         {% endfor %}
     {% else %}
