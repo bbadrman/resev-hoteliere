@@ -37,3 +37,7 @@ div.carousel-caption{
 .datepicker table tr td.new, .datepicker table tr td.old {
     color: firebrick !important;
 }
+
+span.rating i {
+    color:goldenrod;
+}
