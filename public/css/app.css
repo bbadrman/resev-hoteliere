@@ -1,16 +1,15 @@
-div.container {
+div.container, div.container-fluid{
     margin-top: 20px;
 }
 
-div.ad-title {
+div.ad-titre{
     padding: 2em;
     background-size: cover;
-    background-position: center center;
+    background-position: center center ;
 }
-
-div.ad-title h1, div.ad-title p {
-    color: rgb(10, 10, 10);
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+div.ad-titre h1, div.ad-titre p{
+    color: rgb(248, 244, 244);
+    text-shadow: 3px 3px 3Px rgba(0,0,0,0.5);
 }
 
 div.ad-titre .btn {
@@ -19,8 +18,18 @@ div.ad-titre .btn {
     line-height: 1.5;
 }
 
+
 div.carousel-caption{
     text-shadow: 3px 3px 3Px rgba(0,0,0,0.5);
+}
+
+li.dropdown > a.nav-link {
+	color: #fff7f7;
+   
+}
+li.dropdown > a.nav-link:hover {
+	background-color: #AFEEEE !important;
+  
 }
 
 .avatar {
@@ -28,11 +37,9 @@ div.carousel-caption{
     max-height: 128px;
     border-radius: 50%;
 }
-
-.avatar-medium {
+.avatar-mediun {
     max-width: 64px;
     max-height: 64px;
-    border-radius: 50%;
 }
 
 .avatar-mini {
@@ -40,7 +47,29 @@ div.carousel-caption{
     max-height: 24px;
 }
 
-.datepicker table tr td.new, .datepicker table tr td.old {
+.avatar-micro{
+    max-width: 26px;
+    max-height: 26px;
+}
+
+.ml-auto {
+    justify-content: flex-end;
+}
+a.logo {
+    font-size: 24px;
+    color: #f2f2f2;
+    float: left;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
     color: firebrick !important;
 }
 
@@ -54,4 +83,8 @@ span.rating i {
 
 .alert .btn{
     color: white;
+}
+
+.badge{
+    color: rgb(74, 95, 216);
 }
