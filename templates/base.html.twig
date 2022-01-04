@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Badr BECHTIOUI">
-    
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, user-scalable=no">
+            <meta name="author" content="Badr BECHTIOUI">
+            <title> {% block title %}  MyPres      {% endblock %} </title>
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+            <link rel="stylesheet" href="/css/app.css">
 
-        <title>
-            {% block title %}
-               MyPres                    
-                            
-            {% endblock %}
-        </title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-                                           and uncomment the following Encore helpers to start using Symfony UX #}
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-        <link rel="stylesheet" href="/css/app.css">
-
-        {% block stylesheets %}{#{{ encore_entry_link_tags('app') }}#}
+        {% block stylesheets %}
         {% endblock %}
 
     </head>
     <body>
-         {% include "partiels/header.html.twig" %}
+            {% include "partiels/header.html.twig" %}
 
             {% block body %}{% endblock %}
 
-         {% include "partiels/footer.html.twig" %}
+            {% include "partiels/footer.html.twig" %}
 
             <script src="/js/bootstrap.min.js"></script>
             <script src="/js/jquery.slim.min.js"></script>
