@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, user-scalable=no">
+            <meta name="author" content="Badr BECHTIOUI">
+            <title> {% block title %}  MyPres      {% endblock %} </title>
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+            <link rel="stylesheet" href="/css/app.css">
+
+        {% block stylesheets %}
+        {% endblock %}
+
+    </head>
+    <body>
+            {% include "admin/partiels/header.html.twig" %}
+
+            {% block body %}{% endblock %}
+
+            {% include "admin/partiels/footer.html.twig" %}
+            
+<script src="../../public/js/jquery.slim.min.js"></script>
+
+
+<script src="../../public/js/bootstrap.min.js"></script>
+
+
+           
+
+         <script src="/js/popper.min.js"></script>
+
+
+            {% block javascripts %}{% endblock %}
+        </body>
+    </body>
+</html>
