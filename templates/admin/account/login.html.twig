@@ -1,20 +1,80 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminAccountController!{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Connextion à l'administration
+                    
+        </title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+        <style>
+			body {
+				display: flex;
+				justify-content: center;
+				height: 100vh;
+			}
+			.card {
+				margin-top: 10%;
+			}
+		</style>
+    </head>
+    <body>
+        <div class="col-md-4">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <i class="fas fa-lock"></i>
+                        Connexion à l'administration
+                                                					
+                                            
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if hasError %}
+                        <div class="alert alert-warning">
+                            <p>
+                                Les informations que vous avez fournies ne sont pas bonnes.
+                                                            
+                            </p>
+                        </div>
+                    {% endif %}
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="_username">
+                                Email
+                                                            
+                            </label>
+                            <input type="text" class="form-conrol" placeholder="Adresse email..." name="_username" value="{{ username }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="_password">
+                                Mot de passe
+                                                            
+                            </label>
+                            <input type="text" class="form-conrol" placeholder="Mot de passe.." name="_password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-lock-open">
+                                    Connexion !
+                                                                    
+                                </i>
+                            </button>
+                            <a href="{{ path('homepage') }}" class="btn btn-link">
+                                <i class="fas fa-arrow-circle-left"></i>
+                                Retour au site
+                                                            
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/badr/Server/mypress/src/Controller/AdminAccountController.php'|file_link(0) }}">src/Controller/AdminAccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/badr/Server/mypress/templates/admin_account/index.html.twig'|file_link(0) }}">templates/admin_account/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
