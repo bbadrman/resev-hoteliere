@@ -43,9 +43,17 @@
                         <td>
                             {{ ad.title }}
                         </td>
-                        <td>
-                            <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
-                                {{ ad.author.fullName }}
+                            <td>
+                           
+                      
+                       <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
+    
+                                <a href="{{ path('user_show', {'slug': ad.slug}) }}">
+            
+                                    {{ ad.author.fullName }}
+            
+                                </a>
+
                             </td>
                             <td class="text-center">
                                 <span class="btn btn-primary rounded">
@@ -59,7 +67,8 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary">
+                             <a href="{{ path('admin_ads_edit', {'id': ad.id}) }}" class="btn btn-primary">
+    
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="#" class="btn btn-danger">
