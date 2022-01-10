@@ -104,20 +104,22 @@
 {% endblock %}
 
 {% block _ad_images_entry_row %}
-{# {{ dump()}} #}
+
 	<div id="block_{{id}}">
 		{{ form_widget(form)}}
 	</div>
 
 {% endblock %}
 
-{# {% block _ad_images_entry_widget %}
+{% block _ad_images_entry_widget %}
 	<div class="row align-items-center mb-3">
 		<div class="col-4">
-			{% if value %}
+{# {{ form_row(form.url) }} #}
 
+			{% if value %}
 				<img src="{{ value.url }}" class="img-fluid" alt="">
 			{% endif %}
+			 
 		</div>
 		<div class="col-6">
 			{{ form_row(form.caption) }}
@@ -128,7 +130,7 @@
 			</button>
 		</div>
 	</div>
-{% endblock %} #}
+{% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
