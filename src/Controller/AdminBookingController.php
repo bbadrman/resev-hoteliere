@@ -37,9 +37,11 @@ class AdminBookingController extends AbstractController
 
         $form = $this->createForm(AdminBookingType::class, $booking);
 
-        $form->handleRequest($request);
+        
+         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       
+         if ($form->isSubmitted() && $form->isValid()) {
 
             $booking->getAmount(0);
 
