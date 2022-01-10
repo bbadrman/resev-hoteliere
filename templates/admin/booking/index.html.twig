@@ -63,11 +63,12 @@
                                 &euro;
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
+                                    <a href="{{ path('admin_bookings_edit', {'id': booking.id}) }}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ path('admin_bookings_delete', {'id': booking.id}) }}" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </a>
                             </td>
                         </tr>
