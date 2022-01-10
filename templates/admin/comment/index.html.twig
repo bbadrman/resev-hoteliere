@@ -60,16 +60,17 @@
                                     {{ comment.rating }}
                                 </span>
                             </td>
-                            <td>
+                            <td>    
                                 {{ comment.ad.title }}
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+<a href="{{ path('admin_comments_edit', {'id': comment.id}) }}" class="btn btn-primary">
+    <i class="fas fa-edit"></i>
+</a>
+<a href="{{ path('admin_comments_delete', {'id': comment.id}) }}" class="btn btn-danger">
+    <i class="fas fa-trash"></i>
+</a>
+
                             </td>
                         </tr>
                     {% endfor %}
