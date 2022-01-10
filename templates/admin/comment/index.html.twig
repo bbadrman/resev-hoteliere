@@ -1,0 +1,82 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Administration des comment !
+    
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5">
+            Gestion des commentaires
+        </h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Auteur
+                    </th>
+                    <th class="text-center">
+                        Commentaire
+                    </th>
+                    <th class="text-center">
+                        Note
+                    </th>
+                    <th>
+                        Annonce
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>
+                            {{ comment.id }}
+                        </td>
+                        <td>
+                            {{ comment. createdAt|date('d/m/Y H:i') }}
+                        </td>
+
+                        <td>
+                            <img src="{{ comment.author.picture }}" alt="Avatar de {{ comment.author.fullName }}" class="avatar avatar-micro mr-2">
+                                {{ comment.author.fullName }}
+                            </td>
+                            <td>
+
+                                {{ comment.content }}
+                            </td>
+                            <td class="text-center">
+                                <span class="btn btn-dark rounded">
+                                    {{ comment.rating }}
+                                </span>
+                            </td>
+                            <td>
+                                {{ comment.ad.title }}
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+    {% endblock %}
+    
