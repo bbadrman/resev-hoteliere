@@ -15,7 +15,7 @@ class AdminCommentController extends AbstractController
 {
     /**
      * Permet d'afficher les annonces en tableau 
-     * @Route("/admin/comments", name="admin_ads_index")
+     * @Route("/admin/comments", name="admin_comments_index")
      * @return Response
      */
     public function index(CommentRepository $repo): Response
@@ -52,5 +52,32 @@ class AdminCommentController extends AbstractController
             'comment' => $comment,
             'form' => $form->createView()
         ]);
+    }
+
+
+    /**
+     * Permet de supprimer commentaire 
+     * 
+     * @Route("/admin/comments/{id}delete", name="admin_comments_delete")
+     *
+     * @param Comment $comment
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+
+    public function delete(Comment $comment, EntityManagerInterface $manager)
+    {
+
+        $manager->remove($comment);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "La commentaire <strong>{$comment->getAuthor()->getFullName()}</strong> a été bien supprimée !"
+        );
+
+
+
+        return $this->redirectToRoute('admin_comments_index');
     }
 }
