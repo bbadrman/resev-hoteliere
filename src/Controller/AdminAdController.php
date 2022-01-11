@@ -16,11 +16,14 @@ class AdminAdController extends AbstractController
 
     /**
      * Permet d'afficher les annonces en tableau 
-     * @Route("/admin/ads", name="admin_ads_index")
+     * @Route("/admin/ads/{page}", name="admin_ads_index")
      * @return Response
      */
-    public function index(AdRepository $repo): Response
+    public function index(AdRepository $repo, $page = 1): Response
     {
+        $limit = 10;
+        $start = $page * $limit - $limit;
+
         //Methode find: permet de retrouver un enregistrement par son identifiant
 
         $ad = $repo->find(323);
@@ -33,7 +36,7 @@ class AdminAdController extends AbstractController
         // dump($ad);
 
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repo->findAll()
+            'ads' => $repo->findBy([], [], $limit, $start)
         ]);
     }
 
