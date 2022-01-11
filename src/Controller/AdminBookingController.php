@@ -21,6 +21,7 @@ class AdminBookingController extends AbstractController
 
     public function index( BookingRepository $repo): Response
     {
+
         return $this->render('admin/booking/index.html.twig', [
             'bookings' => $repo->findAll()
         ]);
