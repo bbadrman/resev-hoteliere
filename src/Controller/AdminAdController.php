@@ -21,6 +21,17 @@ class AdminAdController extends AbstractController
      */
     public function index(AdRepository $repo): Response
     {
+        //Methode find: permet de retrouver un enregistrement par son identifiant
+
+        $ad = $repo->find(323);
+
+        $ad = $repo->findOneBy([
+            'title' => "annonce corrigée"
+        ]);
+
+        $ad = $repo->findBy([], [], 5, 10);
+        // dump($ad);
+
         return $this->render('admin/ad/index.html.twig', [
             'ads' => $repo->findAll()
         ]);
