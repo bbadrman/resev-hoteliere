@@ -23,6 +23,7 @@ class AdminCommentController extends AbstractController
     {
         $pagination->setEntityClass(Comment::class)
                     ->setPage($page);
+                    
         return $this->render('admin/comment/index.html.twig', [
             'pagination' => $pagination
         ]);
