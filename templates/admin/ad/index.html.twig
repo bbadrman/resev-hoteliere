@@ -2,6 +2,7 @@
 
 {% block title %}
     Administration des annonces !
+        
     
 {% endblock %}
 
@@ -9,6 +10,7 @@
     <div class="container-fluid">
         <h1 class="my-5">
             Gestion des annonces
+                    
         </h1>
 
         <table class="table table-hover">
@@ -16,21 +18,27 @@
                 <tr>
                     <th>
                         Id
+                                            
                     </th>
                     <th>
                         Titre
+                                            
                     </th>
                     <th>
                         Auteur
+                                            
                     </th>
                     <th class="text-center">
                         Réservation
+                                            
                     </th>
                     <th class="text-center">
                         Note
+                                            
                     </th>
                     <th>
                         Actions
+                                            
                     </th>
                 </tr>
             </thead>
@@ -43,15 +51,14 @@
                         <td>
                             {{ ad.title }}
                         </td>
-                            <td>
-                           
-                      
-                       <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
-    
+                        <td>
+
+                            <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
+
                                 <a href="{{ path('user_show', {'slug': ad.slug}) }}">
-            
+
                                     {{ ad.author.fullName }}
-            
+
                                 </a>
 
                             </td>
@@ -61,18 +68,18 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                   <span class="btn btn-primary rounded">
-    
+                                <span class="btn btn-primary rounded">
+
                                     {{ ad.avgRatings | number_format(1, ',', '') }}
                                 </span>
                             </td>
                             <td>
-                             <a href="{{ path('admin_ads_edit', {'id': ad.id}) }}" class="btn btn-primary">
-    
+                                <a href="{{ path('admin_ads_edit', {'id': ad.id}) }}" class="btn btn-primary">
+
                                     <i class="fas fa-edit"></i>
                                 </a>
-<a href="{{ path('admin_ads_delete', {'id': ad.id}) }}" class="btn btn-danger">
-    
+                                <a href="{{ path('admin_ads_delete', {'id': ad.id}) }}" class="btn btn-danger">
+
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -80,46 +87,36 @@
                     {% endfor %}
                 </tbody>
             </table>
-<div class="d-flex justify-content-center">
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#">
-                &laquo;
-            </a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">
-                1
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">
-                2
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">
-                3
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">
-                4
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">
-                5
-            </a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">
-                &raquo;
-            </a>
-        </li>
-    </ul>
-</div>
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                        <a class="page-link" href="{{path('admin_ads_index', {'page': page -1 })}}">
+                            &laquo;
+                                        
+                        </a>
+                    </li>
+                    {% for i in 1..pages %}
+                <li class="page-item {% if page == i %} active{% endif %}">
 
+
+                    <a class="page-link" href="{{ path('admin_ads_index', {'page': i }) }}">
+    
+                           {{i}}
+                                        
+                        </a>
+                    </li>
+                    {% endfor %}
+<li class="page-item {% if page == pages %}disabled{% endif %}"></li>
+
+
+<a class="page-link" href="{{ path('admin_ads_index', {'page': page + 1 }) }}">
+    
+                            &raquo;
+                                        
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
         </div>
 

@@ -24,19 +24,13 @@ class AdminAdController extends AbstractController
         $limit = 10;
         $start = $page * $limit - $limit;
 
-        //Methode find: permet de retrouver un enregistrement par son identifiant
-
-        $ad = $repo->find(323);
-
-        $ad = $repo->findOneBy([
-            'title' => "annonce corrigée"
-        ]);
-
-        $ad = $repo->findBy([], [], 5, 10);
-        // dump($ad);
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit);
 
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repo->findBy([], [], $limit, $start)
+            'ads' => $repo->findBy([], [], $limit, $start),
+            'page' => $page,
+            'pages' => $pages
         ]);
     }
 
