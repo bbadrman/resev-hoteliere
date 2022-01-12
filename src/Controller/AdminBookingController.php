@@ -15,15 +15,22 @@ class AdminBookingController extends AbstractController
 {
     /**
      * Permet d'afficher les annonces en tableau 
-     * @Route("/admin/bookings", name="admin_bookings_index")
+     * @Route("/admin/bookings/{page<\d+>?1}", name="admin_bookings_index")
      * @return Response
      */
 
-    public function index( BookingRepository $repo): Response
+    public function index( BookingRepository$repo, $page = 1): Response
     {
+        $limit = 10;
+        $start = $page * $limit - $limit;
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit);
 
         return $this->render('admin/booking/index.html.twig', [
-            'bookings' => $repo->findAll()
+            'bookings' => $repo->findBy([], [], $limit, $start),
+            'page' => $page,
+            'pages' => $pages
         ]);
     }
 
