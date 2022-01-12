@@ -16,7 +16,7 @@ class AdminAdController extends AbstractController
 
     /**
      * Permet d'afficher les annonces en tableau 
-     * @Route("/admin/ads/{page}", name="admin_ads_index")
+     * @Route("/admin/ads/{page<\d+>?1}", name="admin_ads_index")
      * @return Response
      */
     public function index(AdRepository $repo, $page = 1): Response
