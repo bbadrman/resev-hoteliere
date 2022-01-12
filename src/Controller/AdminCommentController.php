@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Form\AdminCommentType;
+use App\Service\PaginationService;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +16,15 @@ class AdminCommentController extends AbstractController
 {
     /**
      * Permet d'afficher les annonces en tableau 
-     * @Route("/admin/comments", name="admin_comments_index")
+     * @Route("/admin/comments/{page<\d+>?1}", name="admin_comments_index")
      * @return Response
      */
-    public function index(CommentRepository $repo): Response
+    public function index(CommentRepository$repo, $page, PaginationService $pagination): Response
     {
+        $pagination->setEntityClass(Comment::class)
+                    ->setPage($page);
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $repo->findAll()
+            'pagination' => $pagination
         ]);
     }
 

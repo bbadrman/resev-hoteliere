@@ -51,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for ad in ads %}
+                {% for ad in pagination.data %}
                     <tr>
                         <td>
                             {{ ad.id }}
@@ -96,6 +96,9 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
+            {% set page = pagination.page %}
+            {% set pages = pagination.pages %}
+
                 <ul class="pagination">
                     <li class="page-item {% if page == 1 %}disabled{% endif %}">
                         <a class="page-link" href="{{ path('admin_ads_index', {'page': page -1 }) }}">
