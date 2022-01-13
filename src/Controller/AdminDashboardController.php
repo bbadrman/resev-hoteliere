@@ -20,9 +20,33 @@ class AdminDashboardController extends AbstractController
         $comments = $manager->createQuery('SELECT COUNT(c) FROM App\Entity\Comment c')->getSingleScalarResult();
     
 
+        $bestAds = $manager->createQuery(
+            'SELECT AVG(c.rating) as note, a.title, a.id, u.firstName, u.lastName, u.picture 
+            FROM App\Entity\Comment c
+            JOIN c.ad a
+            JOIN a.author u
+            GROUP BY a
+            ORDER BY note DESC')
+            ->setMaxResults(5)
+            ->getResult();
+
+        $wordAds = $manager->createQuery(
+            'SELECT AVG(c.rating) as note, a.title, a.id, u.firstName, u.lastName, u.picture 
+            FROM App\Entity\Comment c
+            JOIN c.ad a
+            JOIN a.author u
+            GROUP BY a
+            ORDER BY note ASC'
+        )
+        ->setMaxResults(5)
+            ->getResult();
+
+
         return $this->render('admin/dashboard/index.html.twig', [
 
-             'stats' => compact('comments', 'users', 'bookings', 'ads')
+             'stats' => compact('comments', 'users', 'bookings', 'ads'),
+            'bestAds' => $bestAds,
+            'wordAds' => $wordAds
             // 'stats' => [
             //     'users' => $users,
             //     'ads' => $ads,
