@@ -107,3 +107,12 @@ solution: ajouter DateType in form type
 An error has occurred resolving the options of the form "Symfony\Component\Form\Extension\Core\Type\DateType": The option "widget" with value "signle_text" is invalid. Accepted values are: "single_text", "text", "choice".
 
 solution: il éte une error ortographe au signle 
+
+### PaginationService
+
+- il faut metre cet servcie il est montener en PaginationService.php
+- apres il faut cree une templet pagination.html.twig
+- apres modifie dans service.yaml
+    App\Service\PaginationService:
+        arguments:
+            $templatePath: 'admin/partiels/pagination.html.twig'
