@@ -1,177 +1,67 @@
 {% extends 'base.html.twig' %}
 {% block title %}
     Bienvenus sur mon cabinet
-        			
-    
+    			
 {% endblock %}
 {% block body %}
     <div class="container">
         <div class="jumbotron mt-3">
             <h1 class="display-3">
                 Bienvenue sur Mon cabinet
-                            
             </h1>
             <p class="lead">
                 Nous mettons en relations les voyageurs et les proprietaires qui veulent profiter d'opportunités et gagner de l'argent en proposant leur bien à la location !
-                            
             </p>
             <hr class="my-4">
                 <p>
                     Vous étes voyageur ? Et vous voulez voir ou vous pourrez loger pour votre prochaine déplacement ?
-                                    
                 </p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button">
                         Voir nos annonces
-                                                				
-                                            
+                        				
                     </a>
                 </p>
             </div>
-
             <br>
-                <h2 class="h1 my-5">
+                <h2 class="h1 my-2">
                     Nos appartement stars
-                                    
                 </h2>
-
                 <div class="row ">
-                    <div class="col-md-4">
-                        <div class="card-header mb-3">
-                            <div class="card-header text-center">
-                                3 chambres,
-                                <strong>
-                                    49&euro; / nuit
-                                    						
-                                </strong>
-                                <br>
-                                    <small>
-                                        Pas encore noté
-                                    </small>
-                                </div>
-                                <img src="http://placehold.it/1000x400" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            Appartement de ouf !
-                                            						
-                                        </h4>
-                                        <p class="card-text">
-                                            lokgqkjhklhlhalkhlkklhklhklhklhklhklhklhd
-                                        </p>
-                                        <a href="#" class="btn btn-success float-right">
-                                            En savoir plus !
-                                        </a>
+                    {% for data in ads %}
+                        {% include "ad/_ad.html.twig" with {'ad': data.annonce} %}
+                    {% endfor %}
 
+                </div>
+                <h2 class="h1 my-5">
+                    Nos proprietaires stars !
+                </h2>
+                <div class="row mt-5">
+                    {% for data in users %}
+                        <div class="col-md-6">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        {{ data.user.fullName }}
+                                    </h4>
+
+                                    <div class="card-text">
+                                        <img src="{{ data.user.picture }}" alt="Avatar de {{ data.user.fullName }}" class="float-left mr-3">
+                                            <p>
+                                                {{ data.user.introduction }}
+                                            </p>
+                                            <a href="{{ path('user_show', {'slug': data.user.slug}) }}" class="btn btn-success float-right">
+                                                En savoir plus
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card-header mb-3">
-                                    <div class="card-header text-center">
-                                        3 chambres,
-                                        <strong>
-                                            49&euro; / nuit
-                                            						
-                                        </strong>
-                                        <br>
-                                            <small>
-                                                Pas encore noté
-                                            </small>
-                                        </div>
-                                        <img src="http://placehold.it/1000x400" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
-                                            <div class="card-body">
-                                                <h4 class="card-title">
-                                                    Appartement de ouf !
-                                                    						
-                                                </h4>
-                                                <p class="card-text">
-                                                    lokgqkjhklhlhalkhlkklhklhklhklhklhklhklhd
-                                                </p>
-                                                <a href="#" class="btn btn-success float-right">
-                                                    En savoitr plus !
-                                                    
-                                                </a>
+                        {% endfor %}
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card-header mb-3">
-                                            <div class="card-header text-center">
-                                                3 chambres,
-                                                <strong>
-                                                    49&euro; / nuit
-                                                    						
-                                                </strong>
-                                                <br>
-                                                    <small>
-                                                        Pas encore noté
-                                                    </small>
-                                                </div>
-                                                <img src="http://placehold.it/1000x400" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">
-                                                            Appartement de ouf !
-                                                            						
-                                                        </h4>
-                                                        <p class="card-text">
-                                                            lokgqkjhklhlhalkhlkklhklhklhklhklhklhklhd
-                                                        </p>
-                                                        <a href="#" class="btn btn-success float-right">
-                                                            En savoitr plus !
-                                                            
-                                                        </a>
+                    </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <h2 class="h1 my-5">
-                                            Nos proprietaires stars !
-                                        </h2>
-                                        <div class="row mt-5">
-                                            <div class="col-md-6">
-                                                <div class="card border-secondary mb-3">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">
-                                                            badr Bechtioui
-                                                        </h4>
+                </div>
 
-                                                        <div class="card-text">
-                                                            <img src="http://placehold.it/64x64" alt="Avatar de badr bechtioui" class="float-left mr-3">
-                                                                <p>
-                                                                    Lorem;hgkghkjshjkhjkhjkhkjhjkhjkhjkhjkhjk
-                                                                </p>
-                                                                <a href="#" class="btn btn-success float-right">
-                                                                    En savoir plus>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card border-secondary mb-3">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">
-                                                                badr Bechtioui
-                                                            </h4>
-
-                                                            <div class="card-text">
-                                                                <img src="http://placehold.it/64x64" alt="Avatar de badr bechtioui" class="float-left mr-3">
-                                                                    <p>
-                                                                        Lorem;hgkghkjshjkhjkhjkhkjhjkhjkhjkhjkhjk
-                                                                    </p>
-                                                                    <a href="#" class="btn btn-success float-right">
-                                                                        En savoir plus>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        {% endblock %}
-                                        
+            {% endblock %}
+            
