@@ -66,12 +66,15 @@
                                 {{ booking.ad.title }}
                             </td>
                             <td>
+                                <span class="btn btn-success">
                                 {{ booking.duration }}
+                                </span>
                             </td>
                             <td>
+                                <span class="btn btn-success">
                                 {{ booking.amount|number_format(2, ',', '') }}
                                 &euro;
-                                                            
+                                </span>                        
                             </td>
                             <td>
                                 <a href="{{ path('admin_bookings_edit', {'id': booking.id}) }}" class="btn btn-primary">
