@@ -2,10 +2,10 @@
   "entrypoints": {
     "ccs/app": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.62bcf186.js"
       ],
       "css": [
-        "/build/ccs/app.css"
+        "/build/ccs/app.500f04bd.css"
       ]
     }
   }
