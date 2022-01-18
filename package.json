@@ -14,5 +14,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "node-sass": "^7.0.1",
+        "sass-loader": "^12.4.0"
     }
 }
