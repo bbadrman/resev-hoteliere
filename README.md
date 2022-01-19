@@ -116,3 +116,9 @@ solution: il éte une error ortographe au signle
     App\Service\PaginationService:
         arguments:
             $templatePath: 'admin/partiels/pagination.html.twig'
+
+ ### Webpack configuration
+
+     necessary to configure the webpack.config.js file with  deplaced fold in asset dort de la projet  and remplaire le fichier app.js.
+
+     afin de minimise les fichier pour avoir une site web souple au cours de navigation en phase production
