@@ -5,7 +5,7 @@
             <meta name="viewport" content="width=device-width, user-scalable=no">
             <meta name="author" content="Badr BECHTIOUI">
             <title> {% block title %}  MyPres      {% endblock %} </title>
-            <link rel="stylesheet" href="{{ asset('build/ccs/app.5669ef0f.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('build/ccs/app.css') }}" type="text/css">
             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
             {# <link rel="stylesheet" href="/css/app.css"> #}
 
@@ -21,14 +21,12 @@
             {% include "partiels/footer.html.twig" %}
             
             <script src="/js/jquery.slim.min.js"></script>
-
-
             <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/popper.min.js"></script>
 
 
-           
-
-         <script src="/js/popper.min.js"></script>
+{#            
+      <script src="{{ asset('build/app.js') }}"></script> #}
 
 
             {% block javascripts %}{% endblock %}
