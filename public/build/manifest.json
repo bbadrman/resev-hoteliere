@@ -1,6 +1,8 @@
 {
-  "build/app.js": "/build/app.js",
+  "build/js/app.js": "/build/js/app.js",
+  "build/js/ad.js": "/build/js/ad.js",
   "build/ccs/app.css": "/build/ccs/app.css",
   "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_core-js_modules_es_string_replace_js.js": "/build/vendors-node_modules_core-js_modules_es_string_replace_js.js",
   "build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js.js": "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js-node_modules_jquery_dist_jquery_js.js"
 }
