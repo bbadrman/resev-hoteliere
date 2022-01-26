@@ -20,7 +20,7 @@ class AdminBookingController extends AbstractController
      * @return Response
      */
 
-    public function index( BookingRepository$repo, $page, PaginationService $pagination): Response
+    public function index( $page, PaginationService $pagination): Response
     {
         $pagination->setEntityClass(Booking::class)
                    ->setPage($page);

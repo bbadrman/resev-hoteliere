@@ -1,0 +1,121 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Administration des comment !
+                        
+                    
+                
+            
+        
+    
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5">
+            Gestion des commentaires
+                                                                    
+                                                        
+                                            
+                                
+                    
+        </h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+                    <th>
+                        fullName
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+
+                    <th class="text-center">
+                        picture
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+                    <th class="text-center">
+                        email
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+                    <th>
+                        introduction
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+                    <th>
+                        Actions
+                                                                                                                                            
+                                                                                                                    
+                                                                                            
+                                                                    
+                                            
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for user in pagination.data %}
+
+                    <tr>
+                        <td>
+                            {{ user.id }}
+                        </td>
+
+                        <td>
+                            {{ user. FullName }}
+
+                        </td>
+
+                        <td>
+                            <img src="{{ user.picture }}" alt="Avatar de {{ user.FullName }}" class="avatar avatar-micro mr-2"></td>
+
+                        </td>
+                        <td >
+                            {{ user. email }}
+
+                        </td>
+                        <td>
+                            {{ user. introduction }}
+
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ pagination.display() }}
+
+    </div>
+
+{% endblock %}

@@ -122,3 +122,17 @@ solution: il éte une error ortographe au signle
      necessary to configure the webpack.config.js file with  deplaced fold in asset dort de la projet  and remplaire le fichier app.js.
 
      afin de minimise les fichier pour avoir une site web souple au cours de navigation en phase production
+
+
+     Problem 1 - cocur/slugify is locked to version v4.0.0 and an update of this package was not requested. - cocur/slugify v4.0.0 requires ext-mbstring * -> it is missing from your system. Install or enable PHP's mbstring extension.
+
+### ( ! ) Parse error: syntax error, unexpected '|', expecting variable (T_VARIABLE) in /var/www/html/vendor/psr/log/src/LoggerInterface.php on line 30 site:stackoverflow.com  
+
+soulution :le probleme a resoulus suivant de copie le meme fichier composer.json sur github sur une branch propre  et apres en "composer install" mais dans le container 
+
+###Your requirements could not be resolved to an installable set of packages
+
+soulution  : il faut entrer au container docker docker
+
+### warning:require_once(/var/www/html/autoload_runtime.php):failed to open stream:no such fils or directory in var/www/html/public/index.php on line 5
+soulution : il fau entrer au container docker parceque le chemin n'esp pas priser et installer les independance compose qui monquant pour avoir le fichier vendor 
