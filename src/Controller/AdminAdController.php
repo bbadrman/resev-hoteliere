@@ -22,7 +22,8 @@ class AdminAdController extends AbstractController
      */
     public function index(AdRepository $repo, $page, PaginationService $pagination): Response
     {
-        $pagination->setEntityClass(Ad::class);
+        $pagination->setEntityClass(Ad::class)
+                   ->setPage($page);
                    
 
         return $this->render('admin/ad/index.html.twig', [
