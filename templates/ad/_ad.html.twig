@@ -2,46 +2,58 @@
 
 <div class="col-md-3">
 
-    <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-            {{ ad.rooms }}
-            chambres,
-            <strong>
-                {{ ad.price | number_format(2, ',', '') }}
-                &euro; / nuit  
-            </strong>
-            <br>
-                {% if ad.comments|length > 0 %}
+	<div class="card bg-light mb-3">
+		<div class="card-header text-center">
+			{{ ad.rooms }}
+			chambres,
+			<strong>
+				{{ ad.price | number_format(2, ',', '') }}
+				Dhs / nuit
+			</strong>
+			<br>
+			{% if ad.comments|length > 0 %}
 
-                    {% include "partiels/rating.html.twig" with {'rating': ad.avgRatings} %}
+				{% include "partiels/rating.html.twig" with {'rating': ad.avgRatings} %}
 
-                {% else %}
-                    <small>
-                        Pas encore noté
-                    </small>
-                {% endif %}
+			{% else %}
+				<small>
+					Pas encore noté
+				</small>
+			{% endif %}
 
-        </div>
-            <a href="{{ url }}">
-                <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
-            </a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="{{ url }}">
-                            {{ ad.title }}
-                        </a>
-                    </h4>
-                    <p class="card-text">
-                        {{ ad.introduction }}
-                    </p>
-                    <a href="{{ url }}" class="btn btn-primary float-right">
-                        En savoir plus ! </a>
-                    {% if app.user and app.user == ad.author %}
-                        <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">
-                            Modifier l'annonce
-                        </a>
-                    {% endif %}
-                </div>
-    </div>
+		</div>
+		<a href="{{ url }}">
+			<img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
+		</a>
+		<div class="card-body">
+			<h4 class="card-title">
+				<a href="{{ url }}">
+					{{ ad.title }}
+				</a>
+			</h4>
+			<p class="card-text">
+				{{ ad.introduction }}
+			</p>
+			<a href="{{ url }}" class="btn btn-primary float-right">
+				En savoir plus !
+			</a>
+			{% if app.user and app.user == ad.author %}
+				<a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">
+					Modifier l'annonce
+				</a>
+
+				<div class="card w-75">
+					<div class="card-body">
+						<h5 class="card-title">Réserveurs:</h5>
+						{% for booking in ad.bookings %}
+							<img src="{{ booking.booker.picture }}" class="avatar mb-3" width="20%" />  
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+
+
+	</div>
+
 </div>
-        
