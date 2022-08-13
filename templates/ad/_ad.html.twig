@@ -46,7 +46,9 @@
 					<div class="card-body">
 						<h5 class="card-title">Réserveurs:</h5>
 						{% for booking in ad.bookings %}
-							<img src="{{ booking.booker.picture }}" class="avatar mb-3" width="20%" />  
+							<a href="{{ path('user_show', {'slug':booking.booker.slug})}}">
+								<img src="{{ booking.booker.picture }}" class="avatar mb-3" width="30%"/>
+							</a>
 						{% endfor %}
 					</div>
 				</div>
