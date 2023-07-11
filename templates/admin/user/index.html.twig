@@ -102,12 +102,12 @@
 
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <a class="btn btn-primary" href="{{ path('admin_user_edit', {'id': user.id }) }}">
+				            	<i class="fas fa-edit"></i>
+				            </a>
+                        <a class="btn btn-danger" href="{{ path('admin_user_delete', {'id': user.id }) }}">
+                            <i class="fas fa-trash"></i>
+                        </a>
 
                         </td>
                     </tr>

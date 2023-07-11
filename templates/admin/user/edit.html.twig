@@ -1,0 +1,34 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit the User Named : {{ user.fullName }} {% endblock %}
+
+{% block body %}
+    <div class="container">
+      <h1 class="my-5">
+        Edit the User :{{ user.fullName }}</h1>
+
+      {{ form_start(form) }}
+        <div class="row">
+          <div class="col">
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.slug ) }}
+          </div>
+          <div class="col-lg-8">
+            <td>
+              <img src="{{ user.picture }}" alt="Avatar of {{ user.fullName }}" class="avatar avatar-med">
+              {{ user.fullName }}
+            </td>
+            {{ form_row(form.picture) }}
+            {{ form_row(form.introduction) }}
+            {{ form_row(form.description) }}
+            <button type="submit" class="btn btn-success float-end">
+              <i class="fas fa-check"></i>
+              Save the Modifications
+            </button>
+          </div>
+        </div>
+      {{ form_end(form) }}
+    </div>
+{% endblock %}
