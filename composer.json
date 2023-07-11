@@ -44,10 +44,10 @@
         "symfony/web-link": "5.3.*",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/browser-kit": "5.3.*",
         "symfony/css-selector": "5.3.*",
         "symfony/debug-bundle": "5.3.*",
@@ -88,7 +88,8 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "database-setup": [
-            "php bin/console doctrine:schema:update --force --no-interaction"
+            "php bin/console doctrine:schema:update --force --no-interaction",
+            "php bin/console doctrine:fixtures:load --no-interaction --env=PROD"
           ],
         "post-install-cmd": [
             "@auto-scripts"
